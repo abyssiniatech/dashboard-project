@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,17 +22,28 @@
         "name": "next"
       }
     ],
+    // ✅ keep baseUrl to resolve paths
+    "baseUrl": ".",
+    // "paths": {
+    //   "@/*": [
+    //     "src/*"
+    //   ]
+    // },
     "paths": {
-      "@/*": ["./*"]
-    }
+  "@/*": ["src/*"]
+},
+
+    // ✅ add this line to silence TS 6 warning
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
