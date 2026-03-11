@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Bell, User } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
@@ -16,17 +17,19 @@ export default function Header() {
         {/* Notification Icon */}
         <button className="relative p-2 rounded hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
           <Bell className="text-gray-700 dark:text-gray-300" size={20} />
-          {/* Example: small notification badge */}
           <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
         </button>
 
-        {/* Admin User Info */}
-        <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-2 rounded-md">
+        {/* Admin User Info (now clickable) */}
+        <Link
+          href="/profile"
+          className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+        >
           <User className="text-gray-700 dark:text-gray-300" size={18} />
           <span className="text-gray-900 dark:text-white font-medium text-sm">
             Admin
           </span>
-        </div>
+        </Link>
 
         {/* Theme Toggle */}
         <ThemeToggle />

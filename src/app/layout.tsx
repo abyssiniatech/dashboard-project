@@ -3,9 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "next-themes";
 
-// Fonts are server-safe
+// Fonts (server safe)
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -18,23 +19,31 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-// ✅ Server metadata
+// Metadata
 export const metadata: Metadata = {
   title: "Admin Dashboard",
   description: "Professional admin dashboard built with Next.js, TS, and Tailwind",
 };
 
-// ✅ RootLayout is now a server component
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="antialiased bg-white dark:bg-slate-900 text-black dark:text-white">
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen">
-            <Sidebar /> {/* Sidebar.tsx has "use client" */}
+            <Sidebar />
             <div className="flex-1 flex flex-col">
-              <Header /> {/* Header.tsx has "use client" */}
+              <Header />
               <main className="p-6 flex-1">{children}</main>
+              <Footer />
             </div>
           </div>
         </ThemeProvider>
